@@ -1,0 +1,40 @@
+import React from "react";
+import numeral from "numeral";
+import moment from "moment";
+
+function Card({ type, title, number = 0, lastUpdate }) {
+    var cardStyle = "covid-number-card"
+    if (type == "confirmed") {
+        cardStyle = "covid-number-card covid-confirmed-card";
+    }
+
+    const getIconType = (type) => {
+        switch (type) {
+            case "confirmed":
+                return "images/confirmed.svg";
+            case "recovered":
+                return "images/recovered.svg";
+            case "deaths":
+                return "images/deaths.svg";
+        }
+    }
+
+    return (
+        <div className={cardStyle}>
+            <div className="row">
+                <div className="col-lg-3">
+                    <img src={getIconType(type)} />
+                </div>
+                <div className="col-lg-9 pl-4">
+                    <div className="d-flex flex-column">
+                        <div className="covid-type-title">{title}</div>
+                        <div className="covid-type-number">{numeral(number).format('0,0')}</div>
+                        <div className="covid-type-updated">Mise à jour {moment(lastUpdate).format('DD-MM-YYYY HH:MM')}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default React.memo(Card);
