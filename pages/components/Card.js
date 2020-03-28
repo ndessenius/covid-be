@@ -1,6 +1,6 @@
 import React from "react";
 import numeral from "numeral";
-import moment from "moment";
+import moment from "moment-timezone";
 
 function Card({ type, title, number = 0, lastUpdate }) {
     var cardStyle = "covid-number-card"
@@ -19,6 +19,7 @@ function Card({ type, title, number = 0, lastUpdate }) {
         }
     }
 
+
     return (
         <div className={cardStyle}>
             <div className="row">
@@ -29,7 +30,7 @@ function Card({ type, title, number = 0, lastUpdate }) {
                     <div className="d-flex flex-column">
                         <div className="covid-type-title">{title}</div>
                         <div className="covid-type-number">{numeral(number).format('0,0')}</div>
-                        <div className="covid-type-updated">Mise à jour {moment(lastUpdate).format('DD-MM-YYYY HH:MM')}</div>
+                        <div className="covid-type-updated">Mise à jour {moment.tz(lastUpdate).tz("Europe/Paris").format('DD-MM-YYYY HH:MM')} CET</div>
                     </div>
                 </div>
             </div>
