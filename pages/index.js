@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import _ from "lodash";
 import Loader from "react-spinners/ClipLoader";
 import { css } from "@emotion/core";
-
 import Layout from "./components/Layout";
 import FilterTypeButton from "./components/FilterTypeButton"
 import Card from "./components/Card";
 import BarChart from "../common/BarChart";
 import DonutChart from "../common/DonutChart";
-
+import Head from 'next/head'
 import { FILTER_TYPE, transformBarData, transformDonutData } from "../common";
 import * as API from "./api/covid.api";
 
@@ -20,6 +19,8 @@ const override = css`
   opacity: 0.4;
   transform: translate(-50%,-50%);
 `;
+
+
 
 function Index() {
     //State
@@ -165,6 +166,12 @@ function Index() {
 
     return (
         <Layout>
+             <Head>
+      <title>COVID19 Tracker</title>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta property="og:image" content="https://covid-be.now.sh/images/logo.png" />
+    </Head>
             <div className="top-section">
                 <img className="logo" src="images/logo.png" width="230" />
                 <p></p>
